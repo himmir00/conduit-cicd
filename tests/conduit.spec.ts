@@ -42,9 +42,9 @@ test.describe('Conduit App Tests', () => {
     await expect(page.getByRole('heading', { name: articleTitle })).toBeVisible();
   });
 
-//   test('Test Case 3: Verify Global Feed content', async ({ page }) => {
-//      // Just ensuring the feed loads and contains at least one article
-//      await homePage.globalFeedTab.click();
-//      await expect(page.locator('app-article-preview').first()).toBeVisible();
-//   });
+  test('Test Case 3: Verify Global Feed content', async ({ page }) => {
+     // Just ensuring the feed loads and contains at least one article
+     await homePage.globalFeedTab.click();
+     await expect(page.locator('app-article-preview').first()).toBeVisible();
+  });
 });
