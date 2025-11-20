@@ -44,7 +44,8 @@ test.describe('Conduit App Tests', () => {
 
   test('Test Case 3: Verify Global Feed content', async ({ page }) => {
      // Just ensuring the feed loads and contains at least one article
-     await homePage.globalFeedTab.click();
+    //  await homePage.globalFeedTab.click();
+     await page.getByText('Global Feed').click();
      await expect(page.locator('app-article-preview').first()).toBeVisible();
   });
 });
