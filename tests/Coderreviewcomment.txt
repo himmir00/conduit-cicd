@@ -1,0 +1,27 @@
+Code Review Comments
+
+    The Page Object Model (POM) usage is properly implemented, but you should ensure that the page object classes (LoginPage, HomePage, EditorPage) encapsulate all selectors and actions, avoiding direct page calls outside those objects.
+
+    Do not hardcode credentials in code. Use environment variables or a config file so secrets aren’t committed to version control. E.g.:
+
+js
+const USER_EMAIL = process.env.CONDUIT_EMAIL;
+const USER_PASS = process.env.CONDUIT_PASS;
+
+Use data-testid or ARIA selectors in your page object methods, instead of text or tag-based selectors, for more stable locators, especially with headings, tabs, or buttons.
+
+Consider moving URL assertions into the page objects (e.g., HomePage) for better encapsulation of navigation and validation.
+
+You are initializing the same page object classes in every test via beforeEach. If these classes do not maintain state across tests, this is fine, but consider sharing them more globally if not necessary.
+
+For the article creation test, assert more outcomes (e.g., article content, author, or tags shown), not just the heading, to ensure full workflow correctness.
+
+Use test.step() to annotate logical phases for better debug output and traceability.
+
+Commented or unused code (like the commented out globalFeedTab.click();) should be either removed or explained.
+
+If possible, add negative test cases (e.g., failed login, invalid article creation) for more comprehensive coverage.
+
+When using Date.now() for article titles, you reduce flakiness, but also consider cleaning up data or implementing checks to prevent test bloat if run repeatedly.
+
+If your LoginPage, HomePage, or EditorPage encapsulate waits effectively, you might not need additional expects for visibility outside those methods.
