@@ -12,6 +12,10 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
 
+    env:
+      TEST_USER_EMAIL: ${{ secrets.USER_EMAIL }}
+      TEST_USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4

@@ -3,10 +3,6 @@ import { LoginPage } from '../pages/LoginPage';
 import { HomePage } from '../pages/HomePage';
 import { EditorPage } from '../pages/EditorPage';
 
-// REPLACE THESE WITH VALID CREDENTIALS YOU REGISTERED ON THE SITE
-const USER_EMAIL = 'himmi@gmail.com'; 
-const USER_PASS = 'himmihimmi';
-
 test.describe('Conduit App Tests', () => {
   let loginPage: LoginPage;
   let homePage: HomePage;
@@ -17,8 +13,11 @@ test.describe('Conduit App Tests', () => {
     homePage = new HomePage(page);
     editorPage = new EditorPage(page);
 
+    const email = process.env.USER_EMAIL!;
+    const password = process.env.USER_PASSWORD!;
+
     await loginPage.goto();
-    await loginPage.login(USER_EMAIL, USER_PASS);
+    await loginPage.login(email, password);
   });
 
   test('Test Case 1: Verify successful login', async ({ page }) => {
